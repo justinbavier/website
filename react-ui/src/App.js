@@ -1,58 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './Header.js';
+import Post from './Post.js';
+import Footer from './Footer.js';
 
-class App extends Component {
+
+
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: null,
-      fetching: true
     };
-  }
-
-  componentDidMount() {
-    fetch('/api')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(json => {
-        this.setState({
-          message: json.message,
-          fetching: false
-        });
-      }).catch(e => {
-        this.setState({
-          message: `API call failed: ${e}`,
-          fetching: false
-        });
-      })
   }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          {'This is '}
-          <a href="https://github.com/mars/heroku-cra-node">
-            {'create-react-app with a custom Node/Express server'}
-          </a><br/>
-        </p>
-        <p className="App-intro">
-          {this.state.fetching
-            ? 'Fetching message from API'
-            : this.state.message}
-        </p>
-      </div>
-    );
+    <div className="All">
+    <div className="Header">
+      <Header />
+    </div>
+    <div className="Content">
+      <Post title="News title" />
+      <br />
+      <Post title="Something else" />
+    </div>
+    <div className="Footer">
+      <Footer />
+    </div>
+    </div>
+    )
   }
 }
-
-export default App;
